@@ -13,13 +13,23 @@ searchInputBox.addEventListener('keyup',function(){
     let keyWord = (searchInputBox.value);
     oldSearchKeyword.innerText=keyWord;
 });
+// spinner functionalities
+const spinnerShow = (istrue) =>{
+    if(istrue){
+        spinners.classList.remove('d-none');
+    }
+    else{
+        spinners.classList.add('d-none');
+    }
+}
 // Search Button functionalities
 const searchBtn =async() =>{
+    spinnerShow(true);
     showMore.classList.add('d-none');
     numberOfResults.innerText='';
     closeBtn.classList.add('d-none');
     detailsContainer.innerHTML='';
-    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchInputBox.value}`);
+    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchInputBox.value.toLowerCase()}`);
     const data = await res.json();
     // console.log(data);
     displayResult(data);
@@ -30,6 +40,7 @@ const displayResult = (phones) =>{
     console.log(phones);
     searchInputBox.value='';
     resultContainer.innerHTML='';
+    spinnerShow(false);
     if(phones.status){
         numberOfResults.innerText=`Total ${phones.data.length} results found!`;
         phones.data.slice(0,20).forEach(phone =>{
@@ -63,6 +74,7 @@ const displayResult = (phones) =>{
 // Details Button functionalities
 const detailsBtn =async(id) =>{
     // console.log(id);
+    spinnerShow(true);
     numberOfResults.innerText='';
     detailsContainer.innerHTML='';
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
@@ -102,6 +114,7 @@ const showDetails =(details) =>{
         <p>WLAN : ${details.others.WLAN}</p>
     </div>
     `;
+    spinnerShow(false);
     detailsContainer.appendChild(div);
 }
 // Close(X) Button functionalities
@@ -111,7 +124,7 @@ closeBtn.addEventListener('click',function(){
 });
 // Show More Button functionalities
 const showMoreBtn =async() =>{
-    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${oldSearchKeyword.innerText}`);
+    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${oldSearchKeyword.innerText.toLowerCase()}`);
     const data = await res.json();
     showRestPhone(data.data.slice(20));
 }
