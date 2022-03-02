@@ -58,7 +58,7 @@ const displayResult = (phones) =>{
                     <p class="card-text">Brand: ${phone.brand}</p>
                 </div>
                 <div class="d-flex justify-content-center details-button">
-                    <button onclick="detailsBtn('${phone.slug}')" class="btn-secondary rounded px-2 py-1"><a class="text-decoration-none text-white" href="#">Details</a>  <i class="fas fa-info-circle"></i></button>
+                    <a class="text-decoration-none text-white" href="#"><button onclick="detailsBtn('${phone.slug}')" class="btn-secondary rounded px-2 py-1">Details <i class="fas fa-info-circle"></i></button></a>
                 </div>
             </div>
             `;
@@ -144,7 +144,7 @@ const showRestPhone = (restPhones) =>{
                     <p class="card-text">Brand: ${phone.brand}</p>
                 </div>
                 <div class="d-flex justify-content-center details-button">
-                    <button onclick="detailsBtn('${phone.slug}')" class="btn-secondary rounded px-2 py-1"><a class="text-decoration-none text-white" href="#">Details</a>  <i class="fas fa-info-circle"></i></button>
+                    <a class="text-decoration-none text-white" href="#"><button onclick="detailsBtn('${phone.slug}')" class="btn-secondary rounded px-2 py-1">Details <i class="fas fa-info-circle"></i></button></a>
                 </div>
             </div>
             `;
