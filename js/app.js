@@ -31,20 +31,17 @@ const searchBtn =async() =>{
     detailsContainer.innerHTML='';
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchInputBox.value.toLowerCase()}`);
     const data = await res.json();
-    // console.log(data);
     displayResult(data);
 }
 
 // showing result on UI
 const displayResult = (phones) =>{
-    console.log(phones);
     searchInputBox.value='';
     resultContainer.innerHTML='';
     spinnerShow(false);
     if(phones.status){
         numberOfResults.innerText=`Total ${phones.data.length} results found!`;
         phones.data.slice(0,20).forEach(phone =>{
-            // console.log(phone);
             errorMessage.innerText='';
             const div = document.createElement('div');
             div.className ='col d-flex justify-content-center';
@@ -73,7 +70,6 @@ const displayResult = (phones) =>{
 }
 // Details Button functionalities
 const detailsBtn =async(id) =>{
-    // console.log(id);
     spinnerShow(true);
     numberOfResults.innerText='';
     detailsContainer.innerHTML='';
@@ -83,7 +79,6 @@ const detailsBtn =async(id) =>{
 }
 // Showing Detailed info on UI
 const showDetails =(details) =>{
-    // console.log(details);
     closeBtn.classList.remove('d-none');
     const div = document.createElement('div');
     div.className='row shadow rounded pt-2';
@@ -129,7 +124,6 @@ const showMoreBtn =async() =>{
     showRestPhone(data.data.slice(20));
 }
 const showRestPhone = (restPhones) =>{
-    console.log(restPhones);
     showMore.classList.add('d-none');
     restPhones.forEach(phone=>{
         const div = document.createElement('div');
