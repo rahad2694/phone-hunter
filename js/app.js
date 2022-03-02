@@ -1,11 +1,16 @@
 // Declaring Global Variables
 const searchInputBox = document.getElementById('search-input-box');
+let oldSearchKeyword = document.getElementById('search-keyword');
 const resultContainer = document.getElementById('result-container');
 const detailsContainer = document.getElementById('details-container');
 const closeBtn = document.getElementById('close-button');
 const errorMessage = document.getElementById('error-message');
 const showMore = document.getElementById('show-more');
 
+searchInputBox.addEventListener('keyup',function(){
+    let keyWord = (searchInputBox.value);
+    oldSearchKeyword.innerText=keyWord;
+});
 // Search Button functionalities
 const searchBtn =async() =>{
     closeBtn.classList.add('d-none');
@@ -98,3 +103,32 @@ closeBtn.addEventListener('click',function(){
     detailsContainer.innerHTML='';
     closeBtn.classList.add('d-none');
 });
+// Show More Button functionalities
+const showMoreBtn =async() =>{
+    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${oldSearchKeyword.innerText}`);
+    const data = await res.json();
+    showRestPhone(data.data.slice(20));
+}
+const showRestPhone = (restPhones) =>{
+    console.log(restPhones);
+    showMore.classList.add('d-none');
+    restPhones.forEach(phone=>{
+        const div = document.createElement('div');
+            div.className ='col d-flex justify-content-center';
+            div.innerHTML=`
+            <div class="card w-75 p-3 shadow rounded">
+                <div class="phone-image d-flex justify-content-center">
+                    <img class="img-fluid" src="${phone.image}" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">${phone.phone_name}</h5>
+                    <p class="card-text">Brand: ${phone.brand}</p>
+                </div>
+                <div class="d-flex justify-content-center details-button">
+                    <button onclick="detailsBtn('${phone.slug}')" class="btn-secondary rounded px-2 py-1"><a class="text-decoration-none text-white" href="#">Details</a>  <i class="fas fa-info-circle"></i></button>
+                </div>
+            </div>
+            `;
+            resultContainer.appendChild(div);
+    });
+}
