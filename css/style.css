@@ -16,7 +16,7 @@ body{
     transition: background-color .3s ease-in-out;
   }
 
-  /* styling close button */
+  /* styling close-details button */
   #close-button :hover{
     color: red;
     transform: scale(1.6);

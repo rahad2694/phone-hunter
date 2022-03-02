@@ -36,7 +36,7 @@ const displayResult = (phones) =>{
                     <p class="card-text">Brand: ${phone.brand}</p>
                 </div>
                 <div class="d-flex justify-content-center details-button">
-                    <button onclick="detailsBtn('${phone.slug}')" class="btn-secondary rounded px-2 py-1">Details  <i class="fas fa-info-circle"></i></button>
+                    <button onclick="detailsBtn('${phone.slug}')" class="btn-secondary rounded px-2 py-1"><a class="text-decoration-none text-white" href="#">Details</a>  <i class="fas fa-info-circle"></i></button>
                 </div>
             </div>
             `;
@@ -59,19 +59,18 @@ const detailsBtn =async(id) =>{
 // Showing Detailed info on UI
 const showDetails =(details) =>{
     console.log(details);
-    console.log(details.mainFeatures.sensors.map(x=>x));
     closeBtn.classList.remove('d-none');
     const div = document.createElement('div');
     div.className='row shadow rounded pt-2';
     div.innerHTML=`
-    <div class="text-center col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6">
+    <div class="text-center col-12 col-md-4 col-lg-4 col-sm-12 col-xl-4">
         <div class="phone-image">
             <img class="p-2" src="${details.image}" alt="">
         </div>
-        <h2>${details.name}</h2>
+        <h2 class="mt-2">${details.name}</h2>
         <p>${details.releaseDate? details.releaseDate:'No release date found'}</p>
     </div>
-    <div class="text-center col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6">
+    <div class="text-center col-12 col-md-4 col-lg-4 col-sm-12 col-xl-4">
         <h5>Main Features:</h5>
         <p>Chipset : ${details.mainFeatures.chipSet}</p>
         <p>Display Size : ${details.mainFeatures.displaySize}</p>
@@ -79,6 +78,15 @@ const showDetails =(details) =>{
         <p>Storage : ${details.mainFeatures.storage}</p>
         <p>Sensors : ${details.mainFeatures.sensors.slice(0,3)},
         ${details.mainFeatures.sensors.slice(3)}</p>
+    </div>
+    <div class="text-center col-12 col-md-4 col-lg-4 col-sm-12 col-xl-4">
+        <h5>Other Features:</h5>
+        <p>Bluetooth : ${details.others.Bluetooth}</p>
+        <p>GPS : ${details.others.GPS}</p>
+        <p>NFC : ${details.others.NFC}</p>
+        <p>Radio : ${details.others.Radio}</p>
+        <p>USB : ${details.others.USB}</p>
+        <p>WLAN : ${details.others.WLAN}</p>
     </div>
     `;
     detailsContainer.appendChild(div);
