@@ -5,6 +5,7 @@ const closeBtn = document.getElementById('close-button');
 const errorMessage = document.getElementById('error-message');
 
 const searchBtn =async() =>{
+    closeBtn.classList.add('d-none');
     detailsContainer.innerHTML='';
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchInputBox.value}`);
     const data = await res.json();
@@ -58,10 +59,12 @@ const showDetails =(details) =>{
     console.log(details.mainFeatures.sensors.map(x=>x));
     closeBtn.classList.remove('d-none');
     const div = document.createElement('div');
-    div.className='row shadow rounded';
+    div.className='row shadow rounded pt-2';
     div.innerHTML=`
     <div class="text-center col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6">
-        <img class="p-2" src="${details.image}" alt="">
+        <div class="phone-image">
+            <img class="p-2" src="${details.image}" alt="">
+        </div>
         <h2>${details.name}</h2>
         <p>${details.releaseDate? details.releaseDate:'No release date found'}</p>
     </div>
