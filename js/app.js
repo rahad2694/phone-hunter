@@ -33,21 +33,21 @@ const displayResult = (phones) =>{
     resultContainer.innerHTML='';
     spinnerShow(false);
     if(phones.status){
-        numberOfResults.innerText=`Total ${phones.data.length} results found!`;
+        numberOfResults.innerText=`Total ${phones?.data.length} results found!`;
         phones.data.slice(0,20).forEach(phone =>{
             const div = document.createElement('div');
             div.className ='col d-flex justify-content-center';
             div.innerHTML=`
             <div class="card w-75 p-3 shadow rounded">
                 <div class="phone-image d-flex justify-content-center">
-                    <img class="img-fluid" src="${phone.image}" class="card-img-top" alt="...">
+                    <img class="img-fluid" src="${phone?.image}" class="card-img-top" alt="Image not available">
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title">${phone.phone_name}</h5>
-                    <p class="card-text">Brand: ${phone.brand}</p>
+                    <h5 class="card-title">${phone?.phone_name}</h5>
+                    <p class="card-text">Brand: ${phone?.brand}</p>
                 </div>
                 <div class="d-flex justify-content-center details-button">
-                    <button onclick="detailsBtn('${phone.slug}')" type="button" class="btn btn-secondary rounded px-2 py-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Details <i class="fas fa-info-circle"></i></button>
+                    <button onclick="detailsBtn('${phone?.slug}')" type="button" class="btn btn-secondary rounded px-2 py-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Details <i class="fas fa-info-circle"></i></button>
                 </div>
             </div>
             `;
@@ -76,30 +76,30 @@ const showDetails =(details) =>{
     div.innerHTML=`
     <div class="text-center col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12">
         <div class="phone-image">
-            <img class="p-2" src="${details.image}" alt="">
+            <img class="p-2" src="${details?.image}" alt="No Image Found">
         </div>
-        <h2 class="mt-2 fw-bold">${details.name}</h2>
-        <p>${details.releaseDate? details.releaseDate:'No release date found'}</p>
+        <h2 class="mt-2 fw-bold">${details?.name? details?.name:'No Data Found'}</h2>
+        <p>${details?.releaseDate? details.releaseDate:'No release date found'}</p>
     </div>
     <div class="text-center col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6">
         <h5 class="fw-bold">Main Features:</h5>
-        <p><span class="fw-bolder">Chipset :</span> ${details.mainFeatures.chipSet}</p>
-        <p><span class="fw-bolder">Display Size :</span>  ${details.mainFeatures.displaySize}</p>
-        <p><span class="fw-bolder">Memory :</span> ${details.mainFeatures.memory}</p>
-        <p><span class="fw-bolder">Storage :</span> ${details.mainFeatures.storage}</p>
-        <p class="text-wrap"><span class="fw-bolder">Sensors :</span> ${details.mainFeatures.sensors.slice(0,2)}
-        ${details.mainFeatures.sensors.slice(2,4)? details.mainFeatures.sensors.slice(2,4):''}
-        ${details.mainFeatures.sensors.slice(4,6)? details.mainFeatures.sensors.slice(4,6):''}
-        ${details.mainFeatures.sensors.slice(6)? details.mainFeatures.sensors.slice(6):''}</p>
+        <p><span class="fw-bolder">Chipset :</span> ${details?.mainFeatures?.chipSet? details?.mainFeatures?.chipSet:'No Data Found'}</p>
+        <p><span class="fw-bolder">Display Size :</span>  ${details?.mainFeatures?.displaySize? details?.mainFeatures?.displaySize:'No Data Found'}</p>
+        <p><span class="fw-bolder">Memory :</span> ${details?.mainFeatures?.memory? details?.mainFeatures?.memory:'No Data Found'}</p>
+        <p><span class="fw-bolder">Storage :</span> ${details?.mainFeatures?.storage? details?.mainFeatures?.storage:'No Data Found'}</p>
+        <p class="text-wrap"><span class="fw-bolder">Sensors :</span> ${details?.mainFeatures?.sensors.slice(0,2)? details?.mainFeatures?.sensors.slice(0,2):'No Data Found'}
+        ${details?.mainFeatures?.sensors.slice(2,4)? details?.mainFeatures?.sensors.slice(2,4):''}
+        ${details?.mainFeatures?.sensors.slice(4,6)? details?.mainFeatures?.sensors.slice(4,6):''}
+        ${details?.mainFeatures?.sensors.slice(6)? details?.mainFeatures?.sensors.slice(6):''}</p>
     </div>
     <div class="text-center col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6">
         <h5 class="fw-bold">Other Features:</h5>
-        <p><span class="fw-bolder">Bluetooth :</span> ${details.others.Bluetooth}</p>
-        <p><span class="fw-bolder">GPS :</span> ${details.others.GPS}</p>
-        <p><span class="fw-bolder">NFC :</span> ${details.others.NFC}</p>
-        <p><span class="fw-bolder">Radio :</span> ${details.others.Radio}</p>
-        <p><span class="fw-bolder">USB :</span> ${details.others.USB}</p>
-        <p><span class="fw-bolder">WLAN :</span> ${details.others.WLAN}</p>
+        <p><span class="fw-bolder">Bluetooth :</span> ${details.others?.Bluetooth? details.others.Bluetooth:'No Data Found'}</p>
+        <p><span class="fw-bolder">GPS :</span> ${details.others?.GPS? details.others.GPS:'No Data Found'}</p>
+        <p><span class="fw-bolder">NFC :</span> ${details.others?.NFC? details.others.NFC:'No Data Found'}</p>
+        <p><span class="fw-bolder">Radio :</span> ${details.others?.Radio? details.others.Radio:'No Data Found'}</p>
+        <p><span class="fw-bolder">USB :</span> ${details.others?.USB? details.others?.USB:'No Data Found'}</p>
+        <p><span class="fw-bolder">WLAN :</span> ${details.others?.WLAN? details.others?.WLAN:'No Data Found'}</p>
     </div>
     `;
     modalBody.appendChild(div);
@@ -124,14 +124,14 @@ const showRestPhone = (restPhones) =>{
             div.innerHTML=`
             <div class="card w-75 p-3 shadow rounded">
                 <div class="phone-image d-flex justify-content-center">
-                    <img class="img-fluid" src="${phone.image}" class="card-img-top" alt="...">
+                    <img class="img-fluid" src="${phone?.image}" class="card-img-top" alt="Image not found">
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title">${phone.phone_name}</h5>
-                    <p class="card-text">Brand: ${phone.brand}</p>
+                    <h5 class="card-title">${phone?.phone_name}</h5>
+                    <p class="card-text">Brand: ${phone?.brand}</p>
                 </div>
                 <div class="d-flex justify-content-center details-button">
-                    <button onclick="detailsBtn('${phone.slug}')" type="button" class="btn btn-secondary rounded px-2 py-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Details <i class="fas fa-info-circle"></i></button>
+                    <button onclick="detailsBtn('${phone?.slug}')" type="button" class="btn btn-secondary rounded px-2 py-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Details <i class="fas fa-info-circle"></i></button>
                 </div>
             </div>
             `;
