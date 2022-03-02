@@ -107,10 +107,8 @@ const showDetails =(details) =>{
 // Storing searchKeyword
 searchInputBox.addEventListener('keyup',function(){
     let keyWord = (searchInputBox.value);
-    // var keyWord = (searchInputBox.value);
     oldSearchKeyword.innerText=keyWord;
 });
-// console.log(keyWord);
 // Show More Button functionalities
 const showMoreBtn =async() =>{
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${oldSearchKeyword.innerText.toLowerCase()}`);
