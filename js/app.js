@@ -1,9 +1,11 @@
 const searchInputBox = document.getElementById('search-input-box');
 const resultContainer = document.getElementById('result-container');
 const detailsContainer = document.getElementById('details-container');
+const closeBtn = document.getElementById('close-button');
 const errorMessage = document.getElementById('error-message');
 
 const searchBtn =async() =>{
+    detailsContainer.innerHTML='';
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchInputBox.value}`);
     const data = await res.json();
     // console.log(data);
@@ -54,6 +56,7 @@ const detailsBtn =async(id) =>{
 const showDetails =(details) =>{
     console.log(details);
     console.log(details.mainFeatures.sensors.map(x=>x));
+    closeBtn.classList.remove('d-none');
     const div = document.createElement('div');
     div.className='row shadow rounded';
     div.innerHTML=`
@@ -74,3 +77,7 @@ const showDetails =(details) =>{
     `;
     detailsContainer.appendChild(div);
 }
+closeBtn.addEventListener('click',function(){
+    detailsContainer.innerHTML='';
+    closeBtn.classList.add('d-none');
+});
