@@ -7,6 +7,7 @@ const closeBtn = document.getElementById('close-button');
 const errorMessage = document.getElementById('error-message');
 const showMore = document.getElementById('show-more');
 const numberOfResults = document.getElementById('number-of-results');
+const spinners = document.getElementById('spinners');
 
 searchInputBox.addEventListener('keyup',function(){
     let keyWord = (searchInputBox.value);
