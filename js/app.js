@@ -6,6 +6,7 @@ const detailsContainer = document.getElementById('details-container');
 const closeBtn = document.getElementById('close-button');
 const errorMessage = document.getElementById('error-message');
 const showMore = document.getElementById('show-more');
+const numberOfResults = document.getElementById('number-of-results');
 
 searchInputBox.addEventListener('keyup',function(){
     let keyWord = (searchInputBox.value);
@@ -13,6 +14,8 @@ searchInputBox.addEventListener('keyup',function(){
 });
 // Search Button functionalities
 const searchBtn =async() =>{
+    showMore.classList.add('d-none');
+    numberOfResults.innerText='';
     closeBtn.classList.add('d-none');
     detailsContainer.innerHTML='';
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchInputBox.value}`);
@@ -27,6 +30,7 @@ const displayResult = (phones) =>{
     searchInputBox.value='';
     resultContainer.innerHTML='';
     if(phones.status){
+        numberOfResults.innerText=`Total ${phones.data.length} results found!`;
         phones.data.slice(0,20).forEach(phone =>{
             // console.log(phone);
             errorMessage.innerText='';
@@ -58,6 +62,7 @@ const displayResult = (phones) =>{
 // Details Button functionalities
 const detailsBtn =async(id) =>{
     // console.log(id);
+    numberOfResults.innerText='';
     detailsContainer.innerHTML='';
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
     const data = await res.json();
