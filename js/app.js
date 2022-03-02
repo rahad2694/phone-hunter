@@ -26,6 +26,9 @@ const displayResult = (phones) =>{
                     <h5 class="card-title">${phone.phone_name}</h5>
                     <p class="card-text">Brand: ${phone.brand}</p>
                 </div>
+                <div class="d-flex justify-content-center details-button">
+                    <button class="btn-secondary rounded px-2 py-1">Details  <i class="fas fa-info-circle"></i></button>
+                </div>
             </div>
             `;
             resultContainer.appendChild(div);
