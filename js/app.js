@@ -1,9 +1,11 @@
+// Declaring Global Variables
 const searchInputBox = document.getElementById('search-input-box');
 const resultContainer = document.getElementById('result-container');
 const detailsContainer = document.getElementById('details-container');
 const closeBtn = document.getElementById('close-button');
 const errorMessage = document.getElementById('error-message');
 
+// Search Button functionalities
 const searchBtn =async() =>{
     closeBtn.classList.add('d-none');
     detailsContainer.innerHTML='';
@@ -13,6 +15,7 @@ const searchBtn =async() =>{
     displayResult(data);
 }
 
+// showing result on UI
 const displayResult = (phones) =>{
     // console.log(phones);
     searchInputBox.value='';
@@ -45,7 +48,7 @@ const displayResult = (phones) =>{
         errorMessage.innerText='No Match Found';
     }
 }
-
+// Details Button functionalities
 const detailsBtn =async(id) =>{
     // console.log(id);
     detailsContainer.innerHTML='';
@@ -53,7 +56,7 @@ const detailsBtn =async(id) =>{
     const data = await res.json();
     showDetails(data.data);
 }
-
+// Showing Detailed info on UI
 const showDetails =(details) =>{
     console.log(details);
     console.log(details.mainFeatures.sensors.map(x=>x));
@@ -80,6 +83,7 @@ const showDetails =(details) =>{
     `;
     detailsContainer.appendChild(div);
 }
+// Close(X) Button functionalities
 closeBtn.addEventListener('click',function(){
     detailsContainer.innerHTML='';
     closeBtn.classList.add('d-none');
