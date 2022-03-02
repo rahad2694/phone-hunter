@@ -26,11 +26,11 @@
         <div class="input-group mb-3 w-75 container">
             <input id="search-input-box" type="text" class="form-control rounded" placeholder="Enter Phone name">
             <button onclick="searchBtn()" class="btn ms-1 rounded btn-outline-secondary" type="button">Search</button>
-          </div>
-          <!-- Error Message Area -->
-          <h3 id="error-message" class="text-danger text-center"></h3>
-          <!-- Details Showing Area -->
-          <div class="container">
+        </div>
+        <!-- Error Message Area -->
+        <h3 id="error-message" class="text-danger text-center"></h3>
+        <!-- Details Showing Area -->
+        <div class="container">
                 <!-- Close-details Button -->
             <div class="d-flex justify-content-center mb-2">
                 <span id="close-button" class="text-end d-none"><i class="fas fa-times-circle"></i></span>
@@ -39,12 +39,16 @@
             <div id="details-container" class="d-flex justify-content-center">
                 
             </div>
-          </div>
-          <!-- Output result Showing Area -->
-          <div class="container mt-3">
+        </div>
+        <!-- Output result Showing Area -->
+        <div class="container mt-3">
             <div id="result-container" class="row row-cols-1 row-cols-md-3 g-4">
             </div>
-          </div>
+        </div>
+        <!-- show More Button -->
+        <div id="show-more" class="d-none d-flex justify-content-center details-button my-3">
+            <button onclick="showMore()" class="btn-secondary rounded px-2 py-1">Show More  <i class="fas fa-chevron-circle-down"></i></button>
+        </div>
     </main>
     <!-- Adding our JS file -->
     <script src="js/app.js"></script>

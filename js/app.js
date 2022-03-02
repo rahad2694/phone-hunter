@@ -4,6 +4,7 @@ const resultContainer = document.getElementById('result-container');
 const detailsContainer = document.getElementById('details-container');
 const closeBtn = document.getElementById('close-button');
 const errorMessage = document.getElementById('error-message');
+const showMore = document.getElementById('show-more');
 
 // Search Button functionalities
 const searchBtn =async() =>{
@@ -17,11 +18,11 @@ const searchBtn =async() =>{
 
 // showing result on UI
 const displayResult = (phones) =>{
-    // console.log(phones);
+    console.log(phones);
     searchInputBox.value='';
     resultContainer.innerHTML='';
     if(phones.status){
-        phones.data.forEach(phone =>{
+        phones.data.slice(0,20).forEach(phone =>{
             // console.log(phone);
             errorMessage.innerText='';
             const div = document.createElement('div');
@@ -42,6 +43,7 @@ const displayResult = (phones) =>{
             `;
             resultContainer.appendChild(div);
         });
+        showMore.classList.remove('d-none');
     }
     else{
         resultContainer.innerHTML='';
@@ -58,7 +60,7 @@ const detailsBtn =async(id) =>{
 }
 // Showing Detailed info on UI
 const showDetails =(details) =>{
-    console.log(details);
+    // console.log(details);
     closeBtn.classList.remove('d-none');
     const div = document.createElement('div');
     div.className='row shadow rounded pt-2';
